@@ -2,11 +2,17 @@ package com.openshift.compare;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.openshift.resources.Containers;
+import com.openshift.services.OCService;
 
 
 public class ContainerCompare {
+	
+	Logger logger = Logger.getLogger(OCService.class.getName());
 
 	private String containerAName;
 	
@@ -16,9 +22,9 @@ public class ContainerCompare {
 	
 	private Containers containerB;
 
-	private HashMap<String, EnvCompare> envCompare;
+	private Map<String, EnvCompare> envCompare;
 	
-	private HashMap<String, VolumesMountCompare> volumeMountCompare;
+	private Map<String, VolumesMountCompare> volumeMountCompare;
 	
 	public ContainerCompare(Containers containerA, Containers containerB) {
 		super();
@@ -38,13 +44,12 @@ public class ContainerCompare {
 	public String diffMathCompare() {
 		 Diff_match_patch dmp = new Diff_match_patch();
 		 LinkedList<Diff_match_patch.Diff> diff = dmp.diff_main(containerBName,containerAName);
-		 dmp.diff_cleanupSemantic(diff);
-		 System.out.println("DIFF COMPARE = "+diff);
+		 dmp.diff_cleanupSemantic(diff);	
 		 return dmp.diff_prettyHtml(diff);
 	}
 	
 	public void generateEnvCompare() {
-		System.out.println("generateEnvCompare");
+		
 		try {
 			envCompare = new HashMap<>();
 			if (containerA!=null) {
@@ -66,7 +71,7 @@ public class ContainerCompare {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE,e.getMessage());
 		}
 	}
 	
@@ -124,19 +129,19 @@ public class ContainerCompare {
 		this.containerB = containerB;
 	}
 
-	public HashMap<String, EnvCompare> getEnvCompare() {
+	public Map<String, EnvCompare> getEnvCompare() {
 		return envCompare;
 	}
 
-	public void setEnvCompare(HashMap<String, EnvCompare> envCompare) {
+	public void setEnvCompare(Map<String, EnvCompare> envCompare) {
 		this.envCompare = envCompare;
 	}
 
-	public HashMap<String, VolumesMountCompare> getVolumeMountCompare() {
+	public Map<String, VolumesMountCompare> getVolumeMountCompare() {
 		return volumeMountCompare;
 	}
 
-	public void setVolumeMountCompare(HashMap<String, VolumesMountCompare> volumeMountCompare) {
+	public void setVolumeMountCompare(Map<String, VolumesMountCompare> volumeMountCompare) {
 		this.volumeMountCompare = volumeMountCompare;
 	}
 	

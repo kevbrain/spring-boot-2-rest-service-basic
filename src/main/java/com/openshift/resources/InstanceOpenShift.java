@@ -1,6 +1,6 @@
 package com.openshift.resources;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class InstanceOpenShift {
 
@@ -10,7 +10,7 @@ public class InstanceOpenShift {
 	
 	private String token;	
 	
-	private HashMap<String, OpenshiftProject> projects;
+	private Map<String, OpenshiftProject> projects;
 
 	public InstanceOpenShift(String name,String url, String token) {
 		super();
@@ -49,11 +49,11 @@ public class InstanceOpenShift {
 		this.token = token;
 	}
 
-	public HashMap<String, OpenshiftProject> getProjects() {
+	public Map<String, OpenshiftProject> getProjects() {
 		return projects;
 	}
 
-	public void setProjects(HashMap<String, OpenshiftProject> projects) {
+	public void setProjects(Map<String, OpenshiftProject> projects) {
 		this.projects = projects;
 	}
 	

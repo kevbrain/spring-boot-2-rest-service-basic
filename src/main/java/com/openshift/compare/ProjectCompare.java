@@ -1,6 +1,7 @@
 package com.openshift.compare;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.openshift.resources.OpenshiftProject;
 
@@ -14,17 +15,17 @@ public class ProjectCompare {
 	
 	private OpenshiftProject projectB;
 	
-	private HashMap<String,DCCompare> dcCompare;
+	private Map<String,DCCompare> dcCompare;
 	
-	private HashMap<String,RouteCompare> routeCompare;
+	private Map<String,RouteCompare> routeCompare;
 	
-	private HashMap<String,ServiceCompare> serviceCompare;
+	private Map<String,ServiceCompare> serviceCompare;
 	
-	private HashMap<String,SecretCompare> secretCompare;
+	private Map<String,SecretCompare> secretCompare;
 	
-	private HashMap<String,ConfigMapCompare> configMapCompare;
+	private Map<String,ConfigMapCompare> configMapCompare;
 	
-	private HashMap<String,PersistentVolumeCompare> persistentVolumeCompare;
+	private Map<String,PersistentVolumeCompare> persistentVolumeCompare;
 	
 
 	public ProjectCompare(OpenshiftProject projectA, OpenshiftProject projectB) {
@@ -52,11 +53,11 @@ public class ProjectCompare {
 		this.projectBName = projectBName;
 	}
 
-	public HashMap<String, DCCompare> getDcCompare() {
+	public Map<String, DCCompare> getDcCompare() {
 		return dcCompare;
 	}
 
-	public void setDcCompare(HashMap<String, DCCompare> dcCompare) {
+	public void setDcCompare(Map<String, DCCompare> dcCompare) {
 		this.dcCompare = dcCompare;
 	}
 
@@ -76,39 +77,39 @@ public class ProjectCompare {
 		this.projectB = projectB;
 	}
 
-	public HashMap<String, RouteCompare> getRouteCompare() {
+	public Map<String, RouteCompare> getRouteCompare() {
 		return routeCompare;
 	}
 
-	public void setRouteCompare(HashMap<String, RouteCompare> routeCompare) {
+	public void setRouteCompare(Map<String, RouteCompare> routeCompare) {
 		this.routeCompare = routeCompare;
 	}
 
-	public HashMap<String, ServiceCompare> getServiceCompare() {
+	public Map<String, ServiceCompare> getServiceCompare() {
 		return serviceCompare;
 	}
 
-	public void setServiceCompare(HashMap<String, ServiceCompare> serviceCompare) {
+	public void setServiceCompare(Map<String, ServiceCompare> serviceCompare) {
 		this.serviceCompare = serviceCompare;
 	}
 
-	public HashMap<String, SecretCompare> getSecretCompare() {
+	public Map<String, SecretCompare> getSecretCompare() {
 		return secretCompare;
 	}
 
-	public void setSecretCompare(HashMap<String, SecretCompare> secretCompare) {
+	public void setSecretCompare(Map<String, SecretCompare> secretCompare) {
 		this.secretCompare = secretCompare;
 	}
 
-	public HashMap<String, ConfigMapCompare> getConfigMapCompare() {
+	public Map<String, ConfigMapCompare> getConfigMapCompare() {
 		return configMapCompare;
 	}
 
-	public void setConfigMapCompare(HashMap<String, ConfigMapCompare> configMapCompare) {
+	public void setConfigMapCompare(Map<String, ConfigMapCompare> configMapCompare) {
 		this.configMapCompare = configMapCompare;
 	}
 
-	public HashMap<String, PersistentVolumeCompare> getPersistentVolumeCompare() {
+	public Map<String, PersistentVolumeCompare> getPersistentVolumeCompare() {
 		return persistentVolumeCompare;
 	}
 

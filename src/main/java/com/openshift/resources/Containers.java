@@ -1,19 +1,21 @@
 package com.openshift.resources;
 
+
 import java.util.HashMap;
+import java.util.Map;
 
 public class Containers {
 	
 	private String name;
 
-	private HashMap<String, Object> env;
+	private Map<String, Object> env;
 	
-	private HashMap<String, VolumeMount> volmount;
+	private Map<String, VolumeMount> volmount;
 	
 	public Containers(String name) {
 		super();
 		this.name = name;
-		this.env = new HashMap<>();
+		this.env = new HashMap<String, Object>();
 	}
 
 	public String getName() {
@@ -24,19 +26,19 @@ public class Containers {
 		this.name = name;
 	}
 
-	public HashMap<String, Object> getEnv() {
+	public Map<String, Object> getEnv() {
 		return env;
 	}
 
-	public void setEnv(HashMap<String, Object> env) {
+	public void setEnv(Map<String, Object> env) {
 		this.env = env;
 	}
 
-	public HashMap<String, VolumeMount> getVolmount() {
+	public Map<String, VolumeMount> getVolmount() {
 		return volmount;
 	}
 
-	public void setVolmount(HashMap<String, VolumeMount> volmount) {
+	public void setVolmount(Map<String, VolumeMount> volmount) {
 		this.volmount = volmount;
 	}
 	

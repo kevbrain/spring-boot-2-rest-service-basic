@@ -8,9 +8,9 @@ public class MyOCInstances {
 	
 	public MyOCInstances() {
 		this.myOcs = new  HashMap<String, InstanceOpenShift>();		
-		myOcs.put("int", new InstanceOpenShift("INTEGRATION","https://ksr.openshift.com:8443", "Bearer gG4sFfzJ9h2rFVTYHHJzgZBGgnyQ9SURAHzxpfK7GeE"));
-		myOcs.put("uat", new InstanceOpenShift("USER ACCEPTANCE TESTING","https://ksr.openshift.com:8443", "Bearer gG4sFfzJ9h2rFVTYHHJzgZBGgnyQ9SURAHzxpfK7GeE"));
-		myOcs.put("prd", new InstanceOpenShift("PRODUCTION","https://ksr.openshift.com:8443", "Bearer gG4sFfzJ9h2rFVTYHHJzgZBGgnyQ9SURAHzxpfK7GeE"));
+		myOcs.put("int", new InstanceOpenShift("INTEGRATION","https://ksr.openshift.com:8443", "Bearer aTG5NRWXg2z4j7PPDn4hS_Bfg-mZMo41vXwKrThwvKQ"));
+		myOcs.put("uat", new InstanceOpenShift("USER ACCEPTANCE TESTING","https://ksr.openshift.com:8443", "Bearer aTG5NRWXg2z4j7PPDn4hS_Bfg-mZMo41vXwKrThwvKQ"));
+		myOcs.put("prd", new InstanceOpenShift("PRODUCTION","https://ksr.openshift.com:8443", "Bearer aTG5NRWXg2z4j7PPDn4hS_Bfg-mZMo41vXwKrThwvKQ"));
 	}
 
 	public MyOCInstances(HashMap<String, InstanceOpenShift> myOcs) {

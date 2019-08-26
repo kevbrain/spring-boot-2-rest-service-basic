@@ -3,11 +3,19 @@ package com.openshift.compare;
 
 	
 	import java.io.UnsupportedEncodingException;
-	import java.net.URLDecoder;
-	import java.net.URLEncoder;
-	import java.util.*;
-	import java.util.regex.Matcher;
-	import java.util.regex.Pattern;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 	/*
 	 * Functions for diff, match and patch.
@@ -835,7 +843,7 @@ package com.openshift.compare;
 	      }
 	    }
 	    while (thisDiff != null) {
-	      if (prevDiff.operation == Operation.DELETE &&
+	      if (prevDiff!=null && prevDiff.operation == Operation.DELETE &&
 	          thisDiff.operation == Operation.INSERT) {
 	        String deletion = prevDiff.text;
 	        String insertion = thisDiff.text;
@@ -1240,10 +1248,10 @@ package com.openshift.compare;
 	    Diff nextDiff = pointer.hasNext() ? pointer.next() : null;
 	    // Intentionally ignore the first and last element (don't need checking).
 	    while (nextDiff != null) {
-	      if (prevDiff.operation == Operation.EQUAL &&
+	      if (prevDiff!=null && prevDiff.operation == Operation.EQUAL &&
 	          nextDiff.operation == Operation.EQUAL) {
 	        // This is a single edit surrounded by equalities.
-	        if (thisDiff.text.endsWith(prevDiff.text)) {
+	        if (thisDiff!=null && thisDiff.text.endsWith(prevDiff.text)) {
 	          // Shift the edit over the previous equality.
 	          thisDiff.text = prevDiff.text
 	              + thisDiff.text.substring(0, thisDiff.text.length()
@@ -1257,7 +1265,7 @@ package com.openshift.compare;
 	          thisDiff = pointer.next(); // Walk past nextDiff.
 	          nextDiff = pointer.hasNext() ? pointer.next() : null;
 	          changes = true;
-	        } else if (thisDiff.text.startsWith(nextDiff.text)) {
+	        } else if (thisDiff!=null && thisDiff.text.startsWith(nextDiff.text)) {
 	          // Shift the edit over the next equality.
 	          prevDiff.text += nextDiff.text;
 	          thisDiff.text = thisDiff.text.substring(nextDiff.text.length())

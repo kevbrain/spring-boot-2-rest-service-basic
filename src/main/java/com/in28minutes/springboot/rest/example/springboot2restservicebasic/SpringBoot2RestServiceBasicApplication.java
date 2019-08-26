@@ -1,11 +1,8 @@
 package com.in28minutes.springboot.rest.example.springboot2restservicebasic;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -46,55 +42,53 @@ public class SpringBoot2RestServiceBasicApplication {
 	@Autowired
 	StudentDataRestRepository studentRepository;
 	
-	@RequestMapping("/")
-	String home() {
-		return "Welcome on SpringBoot application";
-	}
 	
 	@GetMapping("/students")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public List<Student> retrieveAllStudents() {
-		List<Student> myStudents = studentRepository.findAll();		
-		return myStudents;
+		return  studentRepository.findAll();		
+		
 	}
 	
 	@GetMapping("/instances")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public HashMap<String, InstanceOpenShift> retrieveAllInstances() {
+	public Map<String, InstanceOpenShift> retrieveAllInstances() {
 
 		return new  OCService().retrieveAllInstances();
 	}
 	
 	@GetMapping("/{oc}/resources/{resourcetype}/{project}")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ArrayList<Resource> getArrayResources(@PathVariable String oc,@PathVariable String resourcetype,@PathVariable String project ) {
-		return new OCService().getArrayResources(oc,resourcetype,project);
+	public List<Resource> getArrayResources(@PathVariable String oc,@PathVariable String resourcetype,@PathVariable String project ) {
+		return new OCService().getArrayResources(oc,resourcetype, project);
 	}
 	
 	@GetMapping("/{oc}/config/project/{project}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public String loadProject(@PathVariable String oc,@PathVariable String project) {
+		System.out.println("LOAD PROJECT");
 		return new OCService().loadProject(oc,project);
 	}
 	
-	@GetMapping("/{oc}/config/{ressourceType}/{project}/{dc}")
+	@GetMapping("/{oc}/config/{ressourceType}/{project}/{resourceKey}")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public String loadconfig(@PathVariable String oc,@PathVariable String ressourceType,@PathVariable String project,@PathVariable String dc) {
+	public String loadconfig(@PathVariable String oc,@PathVariable String ressourceType,@PathVariable String project,@PathVariable String resourceKey) {
+		System.out.println("LOAD CONFIG ");
 		
-		if (ressourceType.equalsIgnoreCase("deploymentconfigs")) {
-			return new OCService().loadDC(oc,project,dc,null);
+		if (ressourceType.equalsIgnoreCase(DeploymentConfig.TYPE)) {
+			return new OCService().loadDC(oc,project,resourceKey,null);
 		}
-		if (ressourceType.equalsIgnoreCase("services")) {
-			return new OCService().loadService(oc,project,dc,null);
+		if (ressourceType.equalsIgnoreCase(Services.TYPE)) {
+			return new OCService().loadService(oc,project,resourceKey,null);
 		}
-		if (ressourceType.equalsIgnoreCase("routes")) {
-			return new OCService().loadRoute(oc,project,dc,null);
+		if (ressourceType.equalsIgnoreCase(Routes.TYPE)) {
+			return new OCService().loadRoute(oc,project,resourceKey,null);
 		}
-		if (ressourceType.equalsIgnoreCase("secrets")) {
-			return new OCService().loadSecret(oc,project,dc,null);
+		if (ressourceType.equalsIgnoreCase(Secret.TYPE)) {
+			return new OCService().loadSecret(oc,project,resourceKey,null);
 		}
-		if (ressourceType.equalsIgnoreCase("configmaps")) {
-			return new OCService().loadConfimap(oc,project,dc,null);
+		if (ressourceType.equalsIgnoreCase(ConfigMap.TYPE)) {
+			return new OCService().loadConfimap(oc,project,resourceKey,null);
 		}
 		
 		return null;
@@ -173,7 +167,7 @@ public class SpringBoot2RestServiceBasicApplication {
 	
 	@GetMapping("/compare/{ocA}/{ocB}/instances")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public HashMap<String,ProjectCompare> compareInstances(@PathVariable String ocA,@PathVariable String ocB) {
+	public Map<String,ProjectCompare> compareInstances(@PathVariable String ocA,@PathVariable String ocB) {
 		
 		return new OCService().compareInstances(ocA, ocB);
 	}
@@ -195,7 +189,7 @@ public class SpringBoot2RestServiceBasicApplication {
 
 	@GetMapping("/compare/{ocA}/{ocB}/distinctproject/{projectNameA}/{projectNameB}")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public HashMap<String,DCCompare> compareDistinctProjects(@PathVariable String ocA,@PathVariable String ocB,@PathVariable String projectNameA,@PathVariable String projectNameB) {
+	public Map<String,DCCompare> compareDistinctProjects(@PathVariable String ocA,@PathVariable String ocB,@PathVariable String projectNameA,@PathVariable String projectNameB) {
 		
 		return new OCService().compareDistinctProjects(ocA, ocB, projectNameA, projectNameB);
 	}
@@ -203,7 +197,7 @@ public class SpringBoot2RestServiceBasicApplication {
 		
 	@GetMapping("/compare/{ocA}/{ocB}/commonproject/{projectName}")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public HashMap<String,DCCompare> compareProjects(@PathVariable String ocA,@PathVariable String ocB,@PathVariable String projectName) {
+	public Map<String,DCCompare> compareProjects(@PathVariable String ocA,@PathVariable String ocB,@PathVariable String projectName) {
 				
 		return new OCService().compareDistinctProjects(ocA, ocB, projectName, projectName);
 		

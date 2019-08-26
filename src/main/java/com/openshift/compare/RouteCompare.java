@@ -1,7 +1,5 @@
 package com.openshift.compare;
 
-import java.util.LinkedList;
-
 import com.openshift.resources.Routes;
 
 public class RouteCompare extends ResourceCompare{
