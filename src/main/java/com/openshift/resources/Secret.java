@@ -17,7 +17,7 @@ public class Secret extends Resource {
 	
 	private String name;
 	
-	private String type;
+	private String typeSecret;
 	
 	private HashMap<String, String> data;
 	
@@ -64,7 +64,7 @@ public class Secret extends Resource {
 		
 		try {
 			String type = extract.getString("type");
-			secret.setType(type);
+			secret.setTypeSecret(type);
 		} catch (Exception e) {
 			logger.log(Level.INFO,e.getMessage());
 		}
@@ -79,12 +79,13 @@ public class Secret extends Resource {
 		this.name = name;
 	}
 
-	public String getType() {
-		return type;
+	
+	public String getTypeSecret() {
+		return typeSecret;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setTypeSecret(String typeSecret) {
+		this.typeSecret = typeSecret;
 	}
 
 	public HashMap<String, String> getData() {

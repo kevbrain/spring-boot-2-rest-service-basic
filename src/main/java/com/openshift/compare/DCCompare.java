@@ -49,8 +49,8 @@ public class DCCompare {
 	
 	public void generatecontainerCompare() {
 		this.containerCompare = new HashMap<>();
-		Map<String, Containers> mapContainersA = dcA!=null?dcA.getContainers():new HashMap<String, Containers>();
-		Map<String, Containers> mapContainersB = dcB!=null?dcB.getContainers():new HashMap<String, Containers>();
+		Map<String, Containers> mapContainersA = dcA!=null?dcA.getContainers():new HashMap<>();
+		Map<String, Containers> mapContainersB = dcB!=null?dcB.getContainers():new HashMap<>();
 		
 		for (String key:mapContainersA.keySet()) {
 			if (!containerCompare.containsKey(key)) {
@@ -73,8 +73,8 @@ public class DCCompare {
 	
 	public void generateVolumeCompare() {
 		this.volumeCompare = new HashMap<>();
-		Map<String, Volumes> mapVolumesA = dcA!=null?dcA.getVolumes():new HashMap<String, Volumes>();
-		Map<String, Volumes> mapVolumesB = dcB!=null?dcB.getVolumes():new HashMap<String, Volumes>();
+		Map<String, Volumes> mapVolumesA = dcA!=null?dcA.getVolumes():new HashMap<>();
+		Map<String, Volumes> mapVolumesB = dcB!=null?dcB.getVolumes():new HashMap<>();
 				
 		for (String key:mapVolumesA.keySet()) {
 			if (!volumeCompare.containsKey(key)) {
@@ -99,8 +99,8 @@ public class DCCompare {
 	
 	public void generateImageCompare() {
 		this.imageCompare = new HashMap<>();
-		Map<String, TriggerImageChange> mapImagesA = dcA!=null?dcA.getTriggerImageChange():new HashMap<String, TriggerImageChange>();
-		Map<String, TriggerImageChange> mapImagesB = dcB!=null?dcB.getTriggerImageChange():new HashMap<String, TriggerImageChange>();
+		Map<String, TriggerImageChange> mapImagesA = dcA!=null?dcA.getTriggerImageChange():new HashMap<>();
+		Map<String, TriggerImageChange> mapImagesB = dcB!=null?dcB.getTriggerImageChange():new HashMap<>();
 		
 		for (String key:mapImagesA.keySet()) {
 			if (!imageCompare.containsKey(key)) {
@@ -124,8 +124,8 @@ public class DCCompare {
 		//HashMap<String, Services> mapServiceA = dcA!=null?new HashMap<>()dcA.getServicesLinked().getName().getServicesLinked():new HashMap<String, Services>();
 		//HashMap<String, Services> mapServiceB = dcB!=null?dcB.getServicesLinked():new HashMap<String, Services>();
 		
-		Map<String, Services> mapServiceA = new HashMap<String, Services>();
-		Map<String, Services> mapServiceB = new HashMap<String, Services>();
+		Map<String, Services> mapServiceA = new HashMap<>();
+		Map<String, Services> mapServiceB = new HashMap<>();
 		
 		
 		for (String key:mapServiceA.keySet()) {

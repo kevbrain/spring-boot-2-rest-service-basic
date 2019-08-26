@@ -19,7 +19,7 @@ public class Services extends Resource {
 	
 	private HashMap<String,ListenPort> listenPorts;
 	
-	private String type;
+	private String typeService;
 	
 	private String clusterIP;
 	
@@ -63,7 +63,7 @@ public class Services extends Resource {
 		String ipcluster = extractSVC.getJSONObject("spec").getString("clusterIP");
 		String type =  extractSVC.getJSONObject("spec").getString("type");
 		svc.setClusterIP(ipcluster);
-		svc.setType(type);
+		svc.setTypeService(type);
 		
 		HashMap<String,ListenPort> portsMap =new HashMap<>();
 		JSONArray ports = extractSVC.getJSONObject("spec").getJSONArray("ports");
@@ -112,12 +112,14 @@ public class Services extends Resource {
 		this.listenPorts = listenPorts;
 	}
 
-	public String getType() {
-		return type;
+	
+
+	public String getTypeService() {
+		return typeService;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setTypeService(String typeService) {
+		this.typeService = typeService;
 	}
 
 	public String getClusterIP() {
@@ -150,7 +152,7 @@ public class Services extends Resource {
 
 	@Override
 	public String toString() {
-		return "Services [name=" + name + ", listenPorts=" + listenPorts + ", type=" + type + ", clusterIP=" + clusterIP
+		return "Services [name=" + name + ", listenPorts=" + listenPorts + ", type=" + typeService + ", clusterIP=" + clusterIP
 				+ "]";
 	}
 	
