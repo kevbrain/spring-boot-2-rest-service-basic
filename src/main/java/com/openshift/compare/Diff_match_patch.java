@@ -37,37 +37,37 @@ import java.util.regex.Pattern;
 	  /**
 	   * Number of seconds to map a diff before giving up (0 for infinity).
 	   */
-	  public float Diff_Timeout = 1.0f;
+	  public static final float Diff_Timeout = 1.0f;
 	  /**
 	   * Cost of an empty edit operation in terms of edit characters.
 	   */
-	  public short Diff_EditCost = 4;
+	  public static final short Diff_EditCost = 4;
 	  /**
 	   * At what point is no match declared (0.0 = perfection, 1.0 = very loose).
 	   */
-	  public float Match_Threshold = 0.5f;
+	  public static final float Match_Threshold = 0.5f;
 	  /**
 	   * How far to search for a match (0 = exact location, 1000+ = broad match).
 	   * A match this many characters away from the expected location will add
 	   * 1.0 to the score (0.0 is a perfect match).
 	   */
-	  public int Match_Distance = 1000;
+	  public static final int Match_Distance = 1000;
 	  /**
 	   * When deleting a large block of text (over ~64 characters), how close do
 	   * the contents have to be to match the expected contents. (0.0 = perfection,
 	   * 1.0 = very loose).  Note that Match_Threshold controls how closely the
 	   * end points of a delete need to match.
 	   */
-	  public float Patch_DeleteThreshold = 0.5f;
+	  public static final float Patch_DeleteThreshold = 0.5f;
 	  /**
 	   * Chunk size for context length.
 	   */
-	  public short Patch_Margin = 4;
+	  public static final short Patch_Margin = 4;
 
 	  /**
 	   * The number of bits in an int.
 	   */
-	  private short Match_MaxBits = 32;
+	  private static final short Match_MaxBits = 32;
 
 	  /**
 	   * Internal class for returning results from diff_linesToChars().
@@ -1941,15 +1941,15 @@ import java.util.regex.Pattern;
 	      String text1 = diff_text1(aPatch.diffs);
 	      int start_loc;
 	      int end_loc = -1;
-	      if (text1.length() > this.Match_MaxBits) {
+	      if (text1.length() > Diff_match_patch.Match_MaxBits) {
 	        // patch_splitMax will only provide an oversized pattern in the case of
 	        // a monster delete.
 	        start_loc = match_main(text,
-	            text1.substring(0, this.Match_MaxBits), expected_loc);
+	            text1.substring(0, Diff_match_patch.Match_MaxBits), expected_loc);
 	        if (start_loc != -1) {
 	          end_loc = match_main(text,
-	              text1.substring(text1.length() - this.Match_MaxBits),
-	              expected_loc + text1.length() - this.Match_MaxBits);
+	              text1.substring(text1.length() - Diff_match_patch.Match_MaxBits),
+	              expected_loc + text1.length() - Diff_match_patch.Match_MaxBits);
 	          if (end_loc == -1 || start_loc >= end_loc) {
 	            // Can't find valid trailing context.  Drop this patch.
 	            start_loc = -1;
@@ -1973,7 +1973,7 @@ import java.util.regex.Pattern;
 	              Math.min(start_loc + text1.length(), text.length()));
 	        } else {
 	          text2 = text.substring(start_loc,
-	              Math.min(end_loc + this.Match_MaxBits, text.length()));
+	              Math.min(end_loc + Match_MaxBits, text.length()));
 	        }
 	        if (text1.equals(text2)) {
 	          // Perfect match, just shove the replacement text in.
@@ -1983,9 +1983,9 @@ import java.util.regex.Pattern;
 	          // Imperfect match.  Run a diff to get a framework of equivalent
 	          // indices.
 	          LinkedList<Diff> diffs = diff_main(text1, text2, false);
-	          if (text1.length() > this.Match_MaxBits
+	          if (text1.length() > Match_MaxBits
 	              && diff_levenshtein(diffs) / (float) text1.length()
-	              > this.Patch_DeleteThreshold) {
+	              > Diff_match_patch.Patch_DeleteThreshold) {
 	            // The end points match, but the content is unacceptably bad.
 	            results[x] = false;
 	          } else {
@@ -2027,7 +2027,7 @@ import java.util.regex.Pattern;
 	   * @return The padding string added to each side.
 	   */
 	  public String patch_addPadding(LinkedList<Patch> patches) {
-	    short paddingLength = this.Patch_Margin;
+	    short paddingLength = Patch_Margin;
 	    String nullPadding = "";
 	    for (short x = 1; x <= paddingLength; x++) {
 	      nullPadding += String.valueOf((char) x);
