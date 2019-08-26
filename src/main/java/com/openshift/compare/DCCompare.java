@@ -1,6 +1,7 @@
 package com.openshift.compare;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.openshift.resources.Containers;
 import com.openshift.resources.DeploymentConfig;
@@ -18,15 +19,15 @@ public class DCCompare {
 	
 	private DeploymentConfig dcB;
 	
-	private HashMap<String, ContainerCompare> containerCompare;
+	private Map<String, ContainerCompare> containerCompare;
 	
-	private HashMap<String, VolumesCompare> volumeCompare;
+	private Map<String, VolumesCompare> volumeCompare;
 	
-	private HashMap<String, ImageCompare> imageCompare;
+	private Map<String, ImageCompare> imageCompare;
 	
-	private HashMap<String, ServiceCompare> serviceCompare;
+	private Map<String, ServiceCompare> serviceCompare;
 	
-	private HashMap<String, RouteCompare> routeCompare;
+	private Map<String, RouteCompare> routeCompare;
 	
 
 	public DCCompare(DeploymentConfig dcA, DeploymentConfig dcB) {
@@ -45,10 +46,11 @@ public class DCCompare {
 	}
 	
 	
+	
 	public void generatecontainerCompare() {
 		this.containerCompare = new HashMap<>();
-		HashMap<String, Containers> mapContainersA = dcA!=null?dcA.getContainers():new HashMap<String, Containers>();
-		HashMap<String, Containers> mapContainersB = dcB!=null?dcB.getContainers():new HashMap<String, Containers>();
+		Map<String, Containers> mapContainersA = dcA!=null?dcA.getContainers():new HashMap<String, Containers>();
+		Map<String, Containers> mapContainersB = dcB!=null?dcB.getContainers():new HashMap<String, Containers>();
 		
 		for (String key:mapContainersA.keySet()) {
 			if (!containerCompare.containsKey(key)) {
@@ -71,8 +73,8 @@ public class DCCompare {
 	
 	public void generateVolumeCompare() {
 		this.volumeCompare = new HashMap<>();
-		HashMap<String, Volumes> mapVolumesA = dcA!=null?dcA.getVolumes():new HashMap<String, Volumes>();
-		HashMap<String, Volumes> mapVolumesB = dcB!=null?dcB.getVolumes():new HashMap<String, Volumes>();
+		Map<String, Volumes> mapVolumesA = dcA!=null?dcA.getVolumes():new HashMap<String, Volumes>();
+		Map<String, Volumes> mapVolumesB = dcB!=null?dcB.getVolumes():new HashMap<String, Volumes>();
 				
 		for (String key:mapVolumesA.keySet()) {
 			if (!volumeCompare.containsKey(key)) {
@@ -93,10 +95,12 @@ public class DCCompare {
 		}
 	}
 	
+	
+	
 	public void generateImageCompare() {
 		this.imageCompare = new HashMap<>();
-		HashMap<String, TriggerImageChange> mapImagesA = dcA!=null?dcA.getTriggerImageChange():new HashMap<String, TriggerImageChange>();
-		HashMap<String, TriggerImageChange> mapImagesB = dcB!=null?dcB.getTriggerImageChange():new HashMap<String, TriggerImageChange>();
+		Map<String, TriggerImageChange> mapImagesA = dcA!=null?dcA.getTriggerImageChange():new HashMap<String, TriggerImageChange>();
+		Map<String, TriggerImageChange> mapImagesB = dcB!=null?dcB.getTriggerImageChange():new HashMap<String, TriggerImageChange>();
 		
 		for (String key:mapImagesA.keySet()) {
 			if (!imageCompare.containsKey(key)) {
@@ -120,8 +124,8 @@ public class DCCompare {
 		//HashMap<String, Services> mapServiceA = dcA!=null?new HashMap<>()dcA.getServicesLinked().getName().getServicesLinked():new HashMap<String, Services>();
 		//HashMap<String, Services> mapServiceB = dcB!=null?dcB.getServicesLinked():new HashMap<String, Services>();
 		
-		HashMap<String, Services> mapServiceA = new HashMap<String, Services>();
-		HashMap<String, Services> mapServiceB = new HashMap<String, Services>();
+		Map<String, Services> mapServiceA = new HashMap<String, Services>();
+		Map<String, Services> mapServiceB = new HashMap<String, Services>();
 		
 		
 		for (String key:mapServiceA.keySet()) {
@@ -177,43 +181,43 @@ public class DCCompare {
 		this.dcB = dcB;
 	}
 
-	public HashMap<String, ContainerCompare> getContainerCompare() {
+	public Map<String, ContainerCompare> getContainerCompare() {
 		return containerCompare;
 	}
 
-	public void setContainerCompare(HashMap<String, ContainerCompare> containerCompare) {
+	public void setContainerCompare(Map<String, ContainerCompare> containerCompare) {
 		this.containerCompare = containerCompare;
 	}
 
-	public HashMap<String, VolumesCompare> getVolumeCompare() {
+	public Map<String, VolumesCompare> getVolumeCompare() {
 		return volumeCompare;
 	}
 
-	public void setVolumeCompare(HashMap<String, VolumesCompare> volumeCompare) {
+	public void setVolumeCompare(Map<String, VolumesCompare> volumeCompare) {
 		this.volumeCompare = volumeCompare;
 	}
 
-	public HashMap<String, ImageCompare> getImageCompare() {
+	public Map<String, ImageCompare> getImageCompare() {
 		return imageCompare;
 	}
 
-	public void setImageCompare(HashMap<String, ImageCompare> imageCompare) {
+	public void setImageCompare(Map<String, ImageCompare> imageCompare) {
 		this.imageCompare = imageCompare;
 	}
 
-	public HashMap<String, ServiceCompare> getServiceCompare() {
+	public Map<String, ServiceCompare> getServiceCompare() {
 		return serviceCompare;
 	}
 
-	public void setServiceCompare(HashMap<String, ServiceCompare> serviceCompare) {
+	public void setServiceCompare(Map<String, ServiceCompare> serviceCompare) {
 		this.serviceCompare = serviceCompare;
 	}
 
-	public HashMap<String, RouteCompare> getRouteCompare() {
+	public Map<String, RouteCompare> getRouteCompare() {
 		return routeCompare;
 	}
 
-	public void setRouteCompare(HashMap<String, RouteCompare> routeCompare) {
+	public void setRouteCompare(Map<String, RouteCompare> routeCompare) {
 		this.routeCompare = routeCompare;
 	}
 

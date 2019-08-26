@@ -9,7 +9,7 @@ public class ConfigMapCompare  extends ResourceCompare{
 	private ConfigMap configMapB;
 
 	public ConfigMapCompare(ConfigMap configMapA, ConfigMap configMapB) {
-		super();
+		super(configMapA,configMapB);
 		this.configMapA = configMapA;
 		this.configMapB = configMapB;
 	}

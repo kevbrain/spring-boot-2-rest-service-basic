@@ -9,7 +9,7 @@ public class SecretCompare  extends ResourceCompare {
 	private Secret secretB;
 
 	public SecretCompare(Secret secretA, Secret secretB) {
-		super();
+		super(secretA,secretB);
 		this.secretA = secretA;
 		this.secretB = secretB;
 	}

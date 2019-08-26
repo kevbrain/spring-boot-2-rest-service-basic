@@ -9,7 +9,7 @@ public class RouteCompare extends ResourceCompare{
 	private Routes routeB;
 
 	public RouteCompare(Routes routeA, Routes routeB) {
-		super();
+		super(routeA,routeB);
 		this.routeA = routeA;
 		this.routeB = routeB;
 	}

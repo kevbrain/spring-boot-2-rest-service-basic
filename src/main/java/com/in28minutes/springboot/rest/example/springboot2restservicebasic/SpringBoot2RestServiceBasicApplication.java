@@ -65,15 +65,13 @@ public class SpringBoot2RestServiceBasicApplication {
 	
 	@GetMapping("/{oc}/config/project/{project}")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public String loadProject(@PathVariable String oc,@PathVariable String project) {
-		System.out.println("LOAD PROJECT");
+	public String loadProject(@PathVariable String oc,@PathVariable String project) {	
 		return new OCService().loadProject(oc,project);
 	}
 	
 	@GetMapping("/{oc}/config/{ressourceType}/{project}/{resourceKey}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public String loadconfig(@PathVariable String oc,@PathVariable String ressourceType,@PathVariable String project,@PathVariable String resourceKey) {
-		System.out.println("LOAD CONFIG ");
 		
 		if (ressourceType.equalsIgnoreCase(DeploymentConfig.TYPE)) {
 			return new OCService().loadDC(oc,project,resourceKey,null);

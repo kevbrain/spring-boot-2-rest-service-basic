@@ -19,11 +19,11 @@ public class DeploymentConfig extends Resource {
 
 	private String name;
 	
-	private HashMap<String, Containers> containers;
+	private Map<String, Containers> containers;
 	
-	private HashMap<String, Volumes> volumes;
+	private Map<String, Volumes> volumes;
 	
-	private HashMap<String, TriggerImageChange> triggerImageChange;
+	private Map<String, TriggerImageChange> triggerImageChange;
 	
 	private Services servicesLinked;
 	
@@ -41,7 +41,7 @@ public class DeploymentConfig extends Resource {
 		HashMap<String, DeploymentConfig> dcs = new HashMap<>();
 		try {
 			 JSONArray results = loadItemsResource(buildUrl(openshift,projectName,PATHAPI,API,TYPE), openshift);	
-			
+	
 			
 			
 			for (int j=0;j<results.length();j++) {
@@ -54,7 +54,7 @@ public class DeploymentConfig extends Resource {
 			if (svcs!=null) {
 				for(Services service:svcs.values()) {
 					if (dcs.containsKey(service.getSelectorDC())) {						
-						dcs.get(service.getSelectorDC()).setServicesLinked(service);;
+						dcs.get(service.getSelectorDC()).setServicesLinked(service);
 					}
 				}
 				if (routes!=null) {
@@ -233,24 +233,30 @@ public class DeploymentConfig extends Resource {
 		this.name = name;
 	}
 
-	public HashMap<String, Containers> getContainers() {
+	
+
+	public Map<String, Containers> getContainers() {
 		return containers;
 	}
 
-	public void setContainers(HashMap<String, Containers> containers) {
+	public void setContainers(Map<String, Containers> containers) {
 		this.containers = containers;
 	}
 
-	public HashMap<String, Volumes> getVolumes() {
+	public Map<String, Volumes> getVolumes() {
 		return volumes;
 	}
 
-	public void setVolumes(HashMap<String, Volumes> volumes) {
+	public void setVolumes(Map<String, Volumes> volumes) {
 		this.volumes = volumes;
 	}
 
-	public HashMap<String, TriggerImageChange> getTriggerImageChange() {
+	public Map<String, TriggerImageChange> getTriggerImageChange() {
 		return triggerImageChange;
+	}
+
+	public void setTriggerImageChange(Map<String, TriggerImageChange> triggerImageChange) {
+		this.triggerImageChange = triggerImageChange;
 	}
 
 	public void setTriggerImageChange(HashMap<String, TriggerImageChange> triggerImageChange) {
